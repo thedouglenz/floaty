@@ -7,7 +7,9 @@ var floatyPrototype = Object.create(HTMLDivElement.prototype);
 
 
 floatyPrototype.createdCallback = function() {
-	this.innerHTML = "Empty Floaty";
+	if(this.innerHTML == "") {
+		this.innerHTML = "Empty Floaty!";
+	}
 	this.style.border = "1px solid red";
 	this.style.padding = "5px";
 	this.style.display = 'inline';
@@ -26,8 +28,9 @@ floatyPrototype.detachedCallback = function() {
 };
 
 floatyPrototype.fallDown = function() {
-	var fallLength = $(window).height()- $(this).outerHeight();
-	this.style.top = 0;
+	console.log($(this).outerHeight());
+	var fallLength = $(window).height() - $(this).outerHeight();
+	//this.style.top = 0;
 	$(this).animate({top: "+=" + fallLength}, 2500, function() { console.log('fallDown complete');});
 };
 
